@@ -1,14 +1,10 @@
 # Network-Police
-Basic network troubleshooting script
-This Python program performs several tasks related to networking:
+This code works to be a basic network tool that does the following tasks:
 
-It uses the subprocess module to run the ifconfig or ipconfig command (depending on the operating system) to get information about the network interfaces on the computer.
+Prints the network interface information for the system. On Windows, it uses the ipconfig command, and on other systems, it uses the ifconfig command with the interface specified as 'eth0'.
 
-It gets the hostname of the computer using the socket module.
+Prints the hostname of the device.
 
-It prompts the user to enter an IP address and uses the subprocess module to run the ping command to send ICMP echo request packets to the specified IP address.
+Prompts the user to enter an IP address and pings the specified address 4 times using the ping command.
 
-It prompts the user to enter an IP address and uses the subprocess module to run the tracert command to trace the route to the specified IP address.
-
-It prompts the user to enter an IP address and uses the subprocess module to run the arp command to display the ARP cache for the specified IP address. It then uses a regular expression to extract the interface name from the output, and parses the VLAN number from the interface name.
-
+Prompts the user to enter an IP address and traces the route to the specified address using the tracert command.
