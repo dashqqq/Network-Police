@@ -47,7 +47,24 @@ output = result.stdout.decode('utf-8')
 # Print the output
 print(output)
 
+import os
 
+def release_renew_ip():
+  # Use the 'ipconfig' command to release the current IP configuration
+  os.system("ipconfig /release")
 
+  # Use the 'ipconfig' command to renew the current IP configuration
+  os.system("ipconfig /renew")
 
+def main():
+  # Ask the user if they want to release and renew their IP configuration
+  response = input("Do you want to release and renew your current IP configuration? (y/n) ")
 
+  if response == 'y':
+    release_renew_ip()
+    print("IP configuration released and renewed")
+  else:
+    print("IP configuration not changed")
+
+if __name__ == "__main__":
+  main()
