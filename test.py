@@ -36,23 +36,18 @@ output = result.stdout.decode('utf-8')
 print(output)
 
 import subprocess
-import re
 
-ip_address = input("Enter the IP address to get the VLAN for: ")
+# Prompt the user to enter a hostname or IP address
+hostname = input("Enter the hostname or IP address for nslookup: ")
 
-result = subprocess.run(['arp', '-a', ip_address], stdout=subprocess.PIPE)
+# Execute the nslookup command and capture the output
+result = subprocess.run(['nslookup', hostname], stdout=subprocess.PIPE)
 output = result.stdout.decode('utf-8')
 
-# Use a regular expression to extract the interface name from the output
-match = re.search(r"on (\S+)", output)
-if match:
-    interface = match.group(1)
-    # Extract the VLAN number from the interface name
-    vlan = int(interface.split(" ")[1])
-    print(f"VLAN: {vlan}")
-else:
-    print("Unable to find VLAN in output")
+# Print the output
+print(output)
 
 
 
-print("THANK YOU FOR USING")
+
+
