@@ -68,3 +68,23 @@ def main():
 
 if __name__ == "__main__":
   main()
+
+import subprocess
+import re
+
+# Run the `ipconfig` command and store the output in a variable
+output = subprocess.run(['ipconfig'], capture_output=True).stdout.decode()
+
+# Use a regular expression to extract the IP address from the output
+ip_regex = r"(?:IPv4 Address.*: )(.*)"
+match = re.search(ip_regex, output)
+if match:
+    # Extract the IP address from the match object
+    ip_address = match.group(1)
+    # Check if the output contains the word "DHCP"
+    if "DHCP" in output:
+        print(f"The device is using a DHCP configuration with IP address {ip_address}.")
+    else:
+        print(f"The device is using a static configuration with IP address {ip_address}.")
+else:
+    print("Could not find IP address in output.")
